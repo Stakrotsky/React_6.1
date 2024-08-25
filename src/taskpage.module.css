@@ -1,25 +1,57 @@
-.tasks-block-item {
-	background: #f1f3f5;
-	height: 35px;
-	padding: 15px;
-	border: 1px solid #ced4da;
-	margin-bottom: 12px;
-	border-radius: 8px;
-	transition: background-color 0.3s ease;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+.loader {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 25px;
+	height: 25px;
+	border: 5px solid gray;
+	border-radius: 50%;
+	border-left-color: transparent;
+	animation: loader 1s infinite linear;
 }
 
-.tasks-block-item:hover {
-	background-color: #e9ecef;
-	cursor: pointer;
+@keyframes loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.title {
+	color: #2cac53;
+	text-align: center;
+	font-size: 1.5rem;
+	margin-bottom: 20px;
 }
 
 .tasks-block-item:before {
 	content: '✓ ';
-	margin-right: 5px;
+	margin-right: 20px;
 	color: #2cac53;
+	font-size: 1.2rem;
+}
+
+.tasks-block-item {
+	background: #f1f3f5;
+	padding: 20px;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+}
+
+.task-item-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex: 1;
+}
+
+.task-item-content span,
+.task-item-content input {
+	flex: 1;
 }
 
 .tasks-block-item input[type='text'] {
@@ -59,20 +91,9 @@
 	background-color: #c82333;
 }
 
-.task-item-content {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex: 1;
-}
-
-.task-item-content span,
-.task-item-content input {
-	flex: 1;
-}
-
-.task-item-buttons {
-	display: flex;
+.error {
+	color: red;
+	text-align: center;
 }
 
 .tasks-block-item .save-button {

@@ -1,0 +1,15 @@
+.tasks-block-item .save-button {
+	background-color: #28a745;
+}
+
+.tasks-block-item .save-button:hover {
+	background-color: #218838;
+}
+
+.tasks-block-item .cancel-save-button {
+	background-color: #6c757d;
+}
+
+.tasks-block-item .cancel-save-button:hover {
+	background-color: #5a6268;
+}

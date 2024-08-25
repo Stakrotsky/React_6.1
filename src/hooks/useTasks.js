@@ -16,6 +16,7 @@ export const useTasks = () => {
 	}, []);
 
 	const handleAddTask = (taskText) => {
+		setError('');
 		tasksAPI
 			.create(taskText)
 			.then((newTask) => {
@@ -25,6 +26,7 @@ export const useTasks = () => {
 	};
 
 	const handleEditTask = (taskId, newText) => {
+		setError('');
 		tasksAPI
 			.update(taskId, newText)
 			.then((updatedTask) => {
@@ -36,6 +38,7 @@ export const useTasks = () => {
 	};
 
 	const handleDeleteTask = (taskId) => {
+		setError('');
 		tasksAPI
 			.delete(taskId)
 			.then(() => {
@@ -51,5 +54,6 @@ export const useTasks = () => {
 		handleAddTask,
 		handleEditTask,
 		handleDeleteTask,
+		setIsLoading,
 	};
 };

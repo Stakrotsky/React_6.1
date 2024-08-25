@@ -1,39 +1,20 @@
-import { useState } from 'react';
-import { useTasks } from './hooks/useTasks';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styles from './app.module.css';
-import { ControlPanel } from './components/ControlPanel';
-import { TaskList } from './components/TaskList';
+import { MainPage } from './MainPage';
+import { TaskPage } from './TaskPage';
+import { NotFoundPage } from './NotFoundPage';
 
 export const App = () => {
-	const { tasks, error, isLoading, handleAddTask, handleEditTask, handleDeleteTask } =
-		useTasks();
-
-	const [searchQuery, setSearchQuery] = useState('');
-	const [isSorted, setIsSorted] = useState(false);
-
-	const toggleSort = () => {
-		setIsSorted((prevIsSorted) => !prevIsSorted);
-	};
-
 	return (
-		<div className={styles.app}>
-			<h3 className={styles.title}>Список задач:</h3>
-			<ControlPanel
-				setTaskText={() => {}}
-				handleAddTask={handleAddTask}
-				setSearchQuery={setSearchQuery}
-				toggleSort={toggleSort}
-				isSorted={isSorted}
-			/>
-			<TaskList
-				tasks={tasks}
-				searchQuery={searchQuery}
-				isSorted={isSorted}
-				isLoading={isLoading}
-				error={error}
-				handleEditTask={handleEditTask}
-				handleDeleteTask={handleDeleteTask}
-			/>
-		</div>
+		<Router>
+			<div className={styles.app}>
+				<Routes>
+					<Route exact path="/" element={<MainPage />} />
+					<Route path="/task/:id" element={<TaskPage />} />
+					<Route path="/404" element={<NotFoundPage />} />
+					<Route path="*" element={<NotFoundPage />} />
+				</Routes>
+			</div>
+		</Router>
 	);
 };

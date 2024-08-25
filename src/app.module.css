@@ -31,7 +31,7 @@ body {
 	border: 5px solid gray;
 	border-radius: 50%;
 	border-left-color: transparent;
-	animation: loader 1s infinite;
+	animation: loader 1s infinite linear;
 }
 
 @keyframes loader {
@@ -41,4 +41,8 @@ body {
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+.error {
+	color: red;
 }

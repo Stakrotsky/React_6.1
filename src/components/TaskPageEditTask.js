@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './TaskItem.module.css';
+import styles from '../taskpage.module.css';
 
 export const EditTask = ({ task, handleSaveEdit, cancelEdit }) => {
 	const [editText, setEditText] = useState(task.text);

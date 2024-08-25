@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './ControlPanel.module.css';
+import styles from './main-page_control-panel.module.css';
 
 export const ControlPanel = ({ handleAddTask, setSearchQuery, toggleSort, isSorted }) => {
 	const [inputValue, setInputValue] = useState('');
@@ -28,16 +28,24 @@ export const ControlPanel = ({ handleAddTask, setSearchQuery, toggleSort, isSort
 						onChange={handleInputChange}
 						placeholder="Ввести новую задачу"
 					/>
-					<button type="submit">Добавить задачу</button>
+					<button
+						type="submit"
+						className={styles.button + ' ' + styles['add-task-button']}
+					>
+						Добавить задачу
+					</button>
 				</div>
 			</form>
-			<div className={styles['search-and-sort-block']}>
+			<div className={styles['input-block']}>
 				<input
 					type="text"
 					onChange={handleSearchChange}
 					placeholder="Поиск задач"
 				/>
-				<button onClick={toggleSort}>
+				<button
+					className={styles.button + ' ' + styles['sort-button']}
+					onClick={toggleSort}
+				>
 					{isSorted ? 'Отмена сортировки' : 'Сортировать по алфавиту'}
 				</button>
 			</div>
