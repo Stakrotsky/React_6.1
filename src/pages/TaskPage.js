@@ -1,25 +1,34 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './taskpage.module.css';
-import { EditTask } from './components/TaskPageEditTask';
-import { useTasks } from './hooks/useTasks';
+import { EditTask } from '../components/TaskPageEditTask';
+import { useTask } from '../hooks/useTask';
 
 export const TaskPage = () => {
-	const { tasks, handleEditTask, handleDeleteTask } = useTasks();
+	const { id } = useParams();
+	const { task, error, isLoading, handleEditTask, handleDeleteTask } = useTask(id);
 	const [isEditing, setIsEditing] = useState(false);
 	const [isDeleted, setIsDeleted] = useState(false);
 	const navigate = useNavigate();
-	const { id } = useParams();
 
-	const task = tasks.find((task) => task.id === Number(id));
-
-	if (!task && !isDeleted) {
-		return <h3 className={styles.error}>Задача не найдена</h3>;
+	if (isLoading) {
+		return <div className={styles.loader}></div>;
 	}
 
-	const handleBackClick = () => {
-		navigate(-1);
-	};
+	if (isDeleted) {
+		return (
+			<div>
+				<div className={styles.loader}></div>
+				<p>
+					Задача была удалена. Возврат на предыдущую страницу через 5 секунд...
+				</p>
+			</div>
+		);
+	}
+
+	if (error || isDeleted) {
+		return <h3 className={styles.error}>Задача не найдена</h3>;
+	}
 
 	const handleSaveEdit = (taskId, newText) => {
 		handleEditTask(taskId, newText);
@@ -39,16 +48,9 @@ export const TaskPage = () => {
 		}, 5000);
 	};
 
-	if (isDeleted) {
-		return (
-			<div>
-				<div className={styles.loader}></div>
-				<p>
-					Задача была удалена. Возврат на предыдущую страницу через 5 секунд...
-				</p>
-			</div>
-		);
-	}
+	const handleBackClick = () => {
+		navigate(-1);
+	};
 
 	return (
 		<div>

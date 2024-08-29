@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import styles from './app.module.css';
-import { MainPage } from './MainPage';
-import { TaskPage } from './TaskPage';
-import { NotFoundPage } from './NotFoundPage';
+import { MainPage, TaskPage, NotFoundPage } from './pages/index';
 
 export const App = () => {
 	return (

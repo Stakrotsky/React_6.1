@@ -25,35 +25,11 @@ export const useTasks = () => {
 			.catch((err) => setError(err.message));
 	};
 
-	const handleEditTask = (taskId, newText) => {
-		setError('');
-		tasksAPI
-			.update(taskId, newText)
-			.then((updatedTask) => {
-				setTasks((prevTasks) =>
-					prevTasks.map((task) => (task.id === taskId ? updatedTask : task)),
-				);
-			})
-			.catch((err) => setError(err.message));
-	};
-
-	const handleDeleteTask = (taskId) => {
-		setError('');
-		tasksAPI
-			.delete(taskId)
-			.then(() => {
-				setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
-			})
-			.catch((err) => setError(err.message));
-	};
-
 	return {
 		tasks,
 		error,
 		isLoading,
 		handleAddTask,
-		handleEditTask,
-		handleDeleteTask,
 		setIsLoading,
 	};
 };

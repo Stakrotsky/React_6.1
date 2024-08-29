@@ -15,6 +15,11 @@ export const tasksAPI = {
 		return checkResponse(response);
 	},
 
+	fetchById: async (id) => {
+		const response = await fetch(`${tasksEndpoint}/${id}`);
+		return checkResponse(response);
+	},
+
 	async create(taskText) {
 		if (taskText.trim() === '') {
 			throw new Error('Задача не может быть пустой');

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useTasks } from './hooks/useTasks';
-import { TaskList } from './components/MainPageTaskList';
-import { ControlPanel } from './components/MainPageControlPanel';
-import styles from './app.module.css';
+import { useTasks } from '../hooks/useTasks';
+import { TaskList } from '../components/MainPageTaskList';
+import { ControlPanel } from '../components/MainPageControlPanel';
+import styles from '../app.module.css';
 
 export const MainPage = () => {
 	const { tasks, error, isLoading, handleAddTask } = useTasks();
